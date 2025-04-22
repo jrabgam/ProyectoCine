@@ -3,9 +3,10 @@ document.addEventListener("DOMContentLoaded", function () {
         let nombre = document.getElementById("nombre").value.trim();
         let usuario = document.getElementById("usuario").value.trim();
         let correo = document.getElementById("correo").value.trim();
-        let rol = "cliente"; //por default, esta cuenta será de usuario tipo cliente.
+        let rol = document.getElementById("rol").value.trim();
+       // let rol = "cliente"; //por default, esta cuenta será de usuario tipo cliente.
         let password = document.getElementById("contrasenia").value.trim();
-	//Vemos en consola los datos
+
         console.log("Nombre:", nombre);
         console.log("Usuario:", usuario);
         console.log("Correo:", correo);
@@ -19,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         password.value = "";*/
         // Validaciones
         if (!nombre || !usuario || !correo || !password) {
-            alert("Ingrese todos los datos solicitados, por favor");
+            alert("Ingrese todos los campos, por favor");
             return;
         }
         if (password.length < 8) {
@@ -37,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
             let resultado = await respuesta.json();
             if (respuesta.ok) {
-                alert("Registro exitoso. Ahora puedes iniciar sesión.");
+                alert("¡Usuario registrado!");
                 limpiarFormulario();
                 window.location.href = "LogIn.html";
             } else {
@@ -50,7 +51,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// Función para limpiar el formulario
 function limpiarFormulario() {
     document.getElementById("nombre").value = "";
     document.getElementById("usuario").value = "";

@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function() {
         let usuario = document.getElementById("usuario").value;
         let password = document.getElementById("contrasenia").value;
 
-        //SOLICITUD FETCH
         fetch('http://localhost:3000/api/login', {
             method: 'POST',
             headers: {
@@ -17,29 +16,29 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .then(response => response.json())
         .then(data => {
-            console.log('R:', data);
+            console.log('Respuesta del servidor:', data);
             
             if (data.token) {
-                // Si el login es exitoso, guardamos el token y mostramos el menú
-                alert('¡Dentro del sistema!');
-                localStorage.setItem('Token:', data.token); 
+                alert('BIENVENIDO, AL SISTEMA DEL CINE¡');
+                localStorage.setItem('Token', data.token); 
                 localStorage.setItem('Rol', data.rol);  
 
-                // Se le asigna el menu segun el rol
-                if (data.rol === "admin") {
+                if (data.rol === "admin") {  // condicion para mostrar el menu segun el rol que tenga el usuario
                     window.location.href = "../Interfaz/MenuAdministrador.html";
-                } else {
+                    console.log('MENU PARA ADMINISTRADOR');
+                } else if (data.rol === "cliente") {
                     window.location.href = "../Interfaz/MenuCliente.html";
+                    console.log('MENU PARA CLIENTE');
+                } else {
+                    alert("SOLAMENTE SE ACEPTA 2 TIPO DE ROL, cliente o admin");
                 }
             } else {
-                alert('Error, pruebe otra vez');
+                alert('Error en el Registro. Inténtalo de nuevo, por favor.');
             }
         })
         .catch(error => {
             console.error('Error en la solicitud:', error);
         });
-
-        // Limpiar los campos
         document.getElementById("usuario").value = "";
         document.getElementById("contrasenia").value = "";
     });
