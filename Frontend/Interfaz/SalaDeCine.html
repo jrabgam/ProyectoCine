@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de sala</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="d-flex justify-content-center align-items-center vh-100"
+style="background: url('/ProyectoCine/IMG/SalaDeCine.jpg') no-repeat center center/cover;">
+<button id="logoutBtn" style="position: fixed;top: 20px;right: 20px;z-index: 1000;background-color: crimson;
+  color: white;border: none;padding: 10px 20px;border-radius: 8px;font-weight: bold;cursor: pointer;">Salir
+</button>  
+<button id="logoutBtn2" style="position: fixed;top: 20px;right: 20px;z-index: 1000;background-color: blue;
+  color: white;border: none;padding: 10px 20px;border-radius: 8px;font-weight: bold;cursor: pointer;">Regresar
+</button>
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6 col-lg-4">
+  <h1 style="color: white;">REGISTRO DE SALA</h1>
+
+  <form id="registroSalaForm" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="nombreDeSala" class="form-label" style="color: white;">Nombre de la sala</label>
+      <input type="text" class="form-control" id="nombreDeSala" name="nombre" required>
+    </div>
+    <div class="mb-3">
+      <label for="pelicula" class="form-label" style="color: white;">Película</label>
+      <input type="text" class="form-control" id="pelicula" name="pelicula" required>
+    </div>
+    <div class="mb-3">
+      <label for="poster" class="form-label" style="color: white;">Poster</label>
+      <input type="file" class="form-control" id="poster" name="poster" accept="image/*" required>
+    </div>
+    <div class="mb-3">
+      <label for="filas" class="form-label" style="color: white;">Cantidad de filas</label>
+      <input type="number" class="form-control" id="filas" name="filas" required>
+    </div>
+    <div class="mb-3">
+      <label for="columnas" class="form-label" style="color: white;">Cantidad de columnas</label>
+      <input type="number" class="form-control" id="columnas" name="columnas" required>
+    </div>
+    <br><br>
+    <button id="GuardarSalabtn" type="submit" class="btn btn-outline-primary">GUARDAR</button>
+  </form>
+
+</div>
+</div>
+</div>
+<script src="../JS/RegistroDeSala.js"></script>
+<script>
+  document.getElementById("logoutBtn").addEventListener("click", () => {
+    sessionStorage.removeItem("token");
+    window.location.href = "../Interfaz/LogIn.html"; 
+  });
+</script>
+</body>
+</html>
